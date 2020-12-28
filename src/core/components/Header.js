@@ -7,20 +7,35 @@ export default function Header({ toggleSidebar }) {
   const realPath = useLocation().pathname;
   const currentTab = (path) => {
     if (realPath === path) {
-      return { color: "#2ecc72" };
+      return { color: "#20639B" };
     } else {
       return { color: "#000000" };
     }
   };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-      <button
-        className="btn btn-primary"
-        id="menu-toggle"
-        onClick={toggleSidebar}
-      >
-        Toggle Menu
-      </button>
+      <div className="navbar-brand">
+        {/* <img
+          src={process.env.PUBLIC_URL + "/logo.png"}
+          style={{ cursor: "pointer", width: "30px" }}
+          className="d-inline-block align-top mr-2"
+          onClick={toggleSidebar}
+        /> */}
+        <i
+          className="fa fa-bars mr-3"
+          aria-hidden="true"
+          onClick={toggleSidebar}
+          style={{ cursor: "pointer" }}
+        ></i>
+        <Link
+          style={currentTab("/Home")}
+          to="/Home"
+          className="text-decoration-none"
+        >
+          Huayitang 𝕫
+        </Link>
+      </div>
+
       <button
         class="navbar-toggler"
         type="button"

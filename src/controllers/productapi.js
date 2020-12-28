@@ -1,6 +1,6 @@
-import { API } from "./backend";
+import { API } from "../backend";
 
-export const getProducts = async (user, token) => {
+export const getAllProducts = async (user, token) => {
   return (
     await fetch(`${API}/products/${user._id}`, {
       method: "GET",

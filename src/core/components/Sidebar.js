@@ -4,14 +4,15 @@ import { isAdmin } from "../../controllers/authapi";
 export default function Sidebar() {
   return (
     <div className="bg-light border-right" id="sidebar-wrapper">
-      <div className="sidebar-heading">
-        <Link to="/Home" className="brand-link">
+      <div className="sidebar-heading d-flex justify-content-center ">
+        <Link to="/Home" className="text-decoration-none ">
           <img
+            style={{ width: "100px" }}
             src={process.env.PUBLIC_URL + "/logo.png"}
-            style={{ opacity: ".8", height: "100px", width: "100px" }}
             alt="Logo"
+            className="img-thumbnail rounded-circle "
           />
-          <span className="sidebar-heading">HuayitangZI</span>
+          {/* <div className="">HuayitangZI</div> */}
         </Link>
       </div>
       <div className="list-group list-group-flush">
@@ -25,19 +26,19 @@ export default function Sidebar() {
             </Link>
 
             <Link
-              to="/admin/create/product"
+              to="/admin/create/category"
               className="list-group-item list-group-item-action bg-light"
             >
               Add Category
             </Link>
             <Link
-              to="/admin/create/product"
+              to="/admin/products"
               className="list-group-item list-group-item-action bg-light"
             >
               Manage Products
             </Link>
             <Link
-              to="/admin/create/product"
+              to="/admin/categories"
               className="list-group-item list-group-item-action bg-light"
             >
               Manage Categories

@@ -1,4 +1,4 @@
-import { API } from "./backend";
+import { API } from "../backend";
 
 export const signup = async (user) => {
   return (
@@ -61,7 +61,6 @@ export const isAutheticated = () => {
 export const isAdmin = () => {
   if (localStorage.getItem("jwt")) {
     const result = JSON.parse(localStorage.getItem("jwt"));
-
     if (result.user.role === 1) {
       return true;
     }

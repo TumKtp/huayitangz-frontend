@@ -1,13 +1,29 @@
 import React, { useEffect, useState } from "react";
 import Base from "../core/Base";
 import Card from "./components/Card";
-import { getProducts } from "../controllers/productapi";
+import { getAllProducts } from "../controllers/productapi";
 import { isAutheticated } from "../controllers/authapi";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false);
   const { user, token } = isAutheticated();
+
+  useEffect(() => {
+    const fetchAllProducts = async () => {
+      try {
+        const data = await getAllProducts(user, token);
+        if (data.error) throw data.error;
+        setProducts(data);
+        console.log(data);
+      } catch (e) {
+        console.log(e);
+        setError("Unable to get products");
+      }
+    };
+    fetchAllProducts();
+  }, []);
+
   const errorMessage = () => {
     return (
       error && (
@@ -29,22 +45,6 @@ export default function Home() {
     );
   };
 
-  // Fetch Products OnMount
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getProducts(user, token);
-        if (data.error) throw data.error;
-        console.log(data);
-        setProducts(data);
-      } catch (e) {
-        console.log(e);
-        setError("Unable to get products");
-      }
-    }
-    fetchData();
-  }, []);
-
   return (
     <Base>
       <div className="container">
@@ -53,7 +53,10 @@ export default function Home() {
         <div class="row">
           {products.map((product, index) => {
             return (
-              <div key={index} className="col-sm-12 col-md-4 col-lg-3 col-xl-2">
+              <div
+                key={index}
+                className="col-sm-12 col-md-4 col-lg-3 col-xl-2 mb-4"
+              >
                 <div className="cnt-block equal-hight">
                   <Card product={product} />
                 </div>

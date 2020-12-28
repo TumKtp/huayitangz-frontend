@@ -82,7 +82,7 @@ const Signin = () => {
         <div className="row">
           <div className="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
             <div className="card shadow">
-              <img src="logo.png" className="card-img-top p-4" />
+              <img src="logo.png" className="card-img-top p-4" alt="Logo" />
               <div className="card-body">
                 <h5 className=" text-dark">Login</h5>
                 <form>
