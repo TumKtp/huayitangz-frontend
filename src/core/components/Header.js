@@ -13,7 +13,7 @@ export default function Header({ toggleSidebar }) {
     }
   };
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <nav className="navbar  navbar-expand-lg navbar-light bg-light border-bottom ">
       <div className="navbar-brand">
         {/* <img
           src={process.env.PUBLIC_URL + "/logo.png"}
