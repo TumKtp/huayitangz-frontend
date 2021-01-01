@@ -12,7 +12,7 @@ export default function Sidebar() {
             alt="Logo"
             className="img-thumbnail rounded-circle "
           />
-          {/* <div className="">HuayitangZI</div> */}
+          {/* <div className="">huayitangz</div> */}
         </Link>
       </div>
       <div className="list-group list-group-flush">
