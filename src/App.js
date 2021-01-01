@@ -10,6 +10,7 @@ import UpdateProduct from "./admin/pages/UpdateProduct";
 import ManageCategories from "./admin/pages/ManageCategories";
 import UpdateCategory from "./admin/pages/UpdateCategory";
 import Signup from "./pages/Signup";
+import Orders from "./admin/Orders";
 
 function App() {
   return (
@@ -39,10 +40,11 @@ function App() {
           exact
           component={ManageCategories}
         />
+        <AdminRoute path="/admin/orders" exact component={Orders} />
         <AdminRoute path="/signup" exact component={Signup} />
         {/* <Route path="/cart" exact component={Cart} /> */}
         {/* <PrivateRoute path="/user/dashboard" exact component={UserDashBoard} />
-        <AdminRoute path="/admin/dashboard" exact component={AdminDashBoard} />
+   
         
         */}
       </Switch>

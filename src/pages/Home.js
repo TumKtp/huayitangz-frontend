@@ -6,11 +6,11 @@ import { isAutheticated } from "../controllers/authapi";
 import { createOrder } from "../controllers/orderapi";
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState(false);
   const { user, token } = isAutheticated();
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
-
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
@@ -25,6 +25,7 @@ export default function Home() {
     };
     fetchAllProducts();
   }, []);
+
   // All Functions
   const addToCart = (count, product, price, name) => {
     const newCart = [...cart];
@@ -46,9 +47,14 @@ export default function Home() {
       cart: cart,
       address: "ASDADS",
     };
-    console.log(order);
-    const data = await createOrder(user, token, order);
-    console.log(data);
+    try {
+      const data = await createOrder(user, token, order);
+      if (data.error) throw data.error;
+      console.log(data);
+      setSuccess("ส่งคำสั่งซื้อเรียบร้อย");
+    } catch (e) {
+      setError(e);
+    }
   };
 
   // Rendering Function
@@ -126,7 +132,7 @@ export default function Home() {
         style={{ maxWidth: "18rem" }}
       >
         {/* cart Card Header */}
-        <div className="card-header">สินค้าทั้งหมด</div>
+        <div className="card-header">ตะกร้าสินค้า</div>
         {/* cart Card Body */}
         <div className="card-body text-secondary">
           <h5 className="card-title">ทั้งหมด {cart.length} ชนิด</h5>
@@ -187,26 +193,41 @@ export default function Home() {
     </div>
   );
 
-  const errorMessage = () => {
-    return (
-      error && (
-        <div
-          className="alert alert-danger alert-dismissible fade show"
-          role="alert"
+  const errorMessage = () =>
+    error && (
+      <div
+        className="alert alert-danger alert-dismissible fade show"
+        role="alert"
+      >
+        <strong>Error!</strong> {error}
+        <button
+          type="button"
+          className="close"
+          data-dismiss="alert"
+          aria-label="Close"
         >
-          <strong>Error!</strong> {error}
-          <button
-            type="button"
-            className="close"
-            data-dismiss="alert"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-      )
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
     );
-  };
+
+  const successMessage = () =>
+    success && (
+      <div
+        className="alert alert-success alert-dismissible fade show"
+        role="alert"
+      >
+        <strong>Done!</strong> {success}
+        <button
+          type="button"
+          className="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+    );
 
   // TODO: delete debug
   const debugCart = () => {
@@ -219,9 +240,12 @@ export default function Home() {
   return (
     <Base>
       {/* <h2>All products</h2> */}
-      <div className="row">
+      <div className="row pt-3 ">
         <div className="col-lg-10 col-md-12">
+          {successMessage()}
           {errorMessage()}
+          <div className="text-center display-4 mb-3 col-12">สินค้าทั้งหมด</div>
+
           {renderAllProducts()}
         </div>
         {/* Right Sidebar */}

@@ -43,15 +43,15 @@ export default function Sidebar() {
             >
               Manage Categories
             </Link>
+            <Link
+              to="/admin/orders"
+              className="list-group-item list-group-item-action bg-light"
+            >
+              All Orders
+            </Link>
           </Fragment>
         )}
 
-        <Link
-          href="#"
-          className="list-group-item list-group-item-action bg-light"
-        >
-          Orders
-        </Link>
         <Link
           href="#"
           className="list-group-item list-group-item-action bg-light"

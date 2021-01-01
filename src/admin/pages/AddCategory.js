@@ -95,8 +95,8 @@ export default function AddCategory() {
   return (
     <Base>
       <div className="container pt-5 px-5">
-        {errorMessage()}
         {successMessage()}
+        {errorMessage()}
         <p class="text-left font-weight-bold h3 mb-3">Add category</p>
         {renderForm()}
       </div>
