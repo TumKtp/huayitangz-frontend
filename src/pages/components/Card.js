@@ -10,11 +10,23 @@ export default function Card({ product, addToCart }) {
     // If input form empty
     if (Number.isNaN(value)) {
       console.log("EMPTY");
-      addToCart(0, product._id, product.price, product.name);
+      addToCart(
+        0,
+        product._id,
+        product.price.toFixed(1),
+        product.name,
+        product.category.name
+      );
     }
     // If there is a number in input form
     else if (!Number.isNaN(value) && value >= 0) {
-      addToCart(value, product._id, product.price, product.name);
+      addToCart(
+        value,
+        product._id,
+        product.price.toFixed(1),
+        product.name,
+        product.category.name
+      );
     }
     // Option : Input cant empty
     // if (Number.isNaN(value)) {
@@ -29,7 +41,13 @@ export default function Card({ product, addToCart }) {
       value = 1;
     }
     if (value >= 0) {
-      addToCart(value, product._id, product.price, product.name);
+      addToCart(
+        value,
+        product._id,
+        product.price.toFixed(1),
+        product.name,
+        product.category.name
+      );
       setCount(value);
     }
   };
@@ -41,7 +59,13 @@ export default function Card({ product, addToCart }) {
     }
 
     if (value >= 0) {
-      addToCart(value, product._id, product.price, product.name);
+      addToCart(
+        value,
+        product._id,
+        product.price.toFixed(1),
+        product.name,
+        product.category.name
+      );
       setCount(value);
     }
   };
@@ -88,7 +112,10 @@ export default function Card({ product, addToCart }) {
         <li class="list-group-item">{renderInputspinner()}</li>
         <li class="list-group-item">
           ทั้งหมด{" "}
-          {Number.isNaN(product.price * count) ? 0 : product.price * count} บาท
+          {Number.isNaN(product.price * count)
+            ? 0
+            : (product.price * count).toFixed(1)}{" "}
+          บาท
         </li>
         {/* <p className="text-dark text-center">{JSON.stringify(count)}</p> */}
       </ul>

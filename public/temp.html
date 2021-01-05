@@ -1,126 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Login V1</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<div class="container">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Employee</div>
+      <div class="panel-body">
+        <table class="table table-condensed table-striped">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Fist Name</th>
+              <th>Last Name</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Status</th>
+            </tr>
+          </thead>
 
-    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
-
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="vendor/bootstrap/css/bootstrap.min.css"
-    />
-
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"
-    />
-
-    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" />
-
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="vendor/css-hamburgers/hamburgers.min.css"
-    />
-
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="vendor/select2/select2.min.css"
-    />
-
-    <link rel="stylesheet" type="text/css" href="css/util.css" />
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
-  </head>
-  <body>
-    <div class="limiter">
-      <div class="container-login100">
-        <div class="wrap-login100">
-          <div class="login100-pic js-tilt" data-tilt>
-            <img src="images/img-01.png" alt="IMG" />
-          </div>
-          <form class="login100-form validate-form">
-            <span class="login100-form-title"> Member Login </span>
-            <div
-              class="wrap-input100 validate-input"
-              data-validate="Valid email is required: ex@abc.xyz"
+          <tbody>
+            <tr
+              data-toggle="collapse"
+              data-target="#demo1"
+              class="accordion-toggle"
             >
-              <input
-                class="input100"
-                type="text"
-                name="email"
-                placeholder="Email"
-              />
-              <span class="focus-input100"></span>
-              <span class="symbol-input100">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-              </span>
-            </div>
-            <div
-              class="wrap-input100 validate-input"
-              data-validate="Password is required"
-            >
-              <input
-                class="input100"
-                type="password"
-                name="pass"
-                placeholder="Password"
-              />
-              <span class="focus-input100"></span>
-              <span class="symbol-input100">
-                <i class="fa fa-lock" aria-hidden="true"></i>
-              </span>
-            </div>
-            <div class="container-login100-form-btn">
-              <button class="login100-form-btn">Login</button>
-            </div>
-            <div class="text-center p-t-12">
-              <span class="txt1"> Forgot </span>
-              <a class="txt2" href="#"> Username / Password? </a>
-            </div>
-            <div class="text-center p-t-136">
-              <a class="txt2" href="#">
-                Create your Account
-                <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-              </a>
-            </div>
-          </form>
-        </div>
+              <td>
+                <button class="btn btn-default btn-xs">
+                  <span class="glyphicon glyphicon-eye-open"></span>
+                </button>
+              </td>
+              <td>Carlos</td>
+              <td>Mathias</td>
+              <td>Leme</td>
+              <td>SP</td>
+              <td>new</td>
+            </tr>
+
+            <tr>
+              <td colspan="12" class="hiddenRow">
+                <div class="accordian-body collapse" id="demo1">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr class="info">
+                        <th>Job</th>
+                        <th>Company</th>
+                        <th>Salary</th>
+                        <th>Date On</th>
+                        <th>Date off</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr
+                        data-toggle="collapse"
+                        class="accordion-toggle"
+                        data-target="#demo10"
+                      >
+                        <td><a href="#">Enginner Software</a></td>
+                        <td>Google</td>
+                        <td>U$8.00000</td>
+                        <td>2016/09/27</td>
+                        <td>2017/09/27</td>
+                        <td>
+                          <a href="#" class="btn btn-default btn-sm">
+                            <i class="glyphicon glyphicon-cog"></i>
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="12" class="hiddenRow">
+                          <div class="accordian-body collapse" id="demo10">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <td><a href="#"> XPTO 1</a></td>
+                                  <td>XPTO 2</td>
+                                  <td>Obs</td>
+                                </tr>
+                                <tr>
+                                  <th>item 1</th>
+                                  <th>item 2</th>
+                                  <th>item 3</th>
+                                  <th>item 4</th>
+                                  <th>item 5</th>
+                                  <th>Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>item 1</td>
+                                  <td>item 2</td>
+                                  <td>item 3</td>
+                                  <td>item 4</td>
+                                  <td>item 5</td>
+                                  <td>
+                                    <a href="#" class="btn btn-default btn-sm">
+                                      <i class="glyphicon glyphicon-cog"></i>
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Scrum Master</td>
+                        <td>Google</td>
+                        <td>U$8.00000</td>
+                        <td>2016/09/27</td>
+                        <td>2017/09/27</td>
+                        <td>
+                          <a href="#" class="btn btn-default btn-sm">
+                            <i class="glyphicon glyphicon-cog"></i>
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Back-end</td>
+                        <td>Google</td>
+                        <td>U$8.00000</td>
+                        <td>2016/09/27</td>
+                        <td>2017/09/27</td>
+                        <td>
+                          <a href="#" class="btn btn-default btn-sm">
+                            <i class="glyphicon glyphicon-cog"></i>
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Front-end</td>
+                        <td>Google</td>
+                        <td>U$8.00000</td>
+                        <td>2016/09/27</td>
+                        <td>2017/09/27</td>
+                        <td>
+                          <a href="#" class="btn btn-default btn-sm">
+                            <i class="glyphicon glyphicon-cog"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-
-    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-
-    <script src="vendor/bootstrap/js/popper.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <script src="vendor/select2/select2.min.js"></script>
-
-    <script src="vendor/tilt/tilt.jquery.min.js"></script>
-    <script>
-      $(".js-tilt").tilt({
-        scale: 1.1,
-      });
-    </script>
-
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "UA-23581568-13");
-    </script>
-
-    <script src="js/main.js"></script>
-  </body>
-</html>
+  </div>
+</div>

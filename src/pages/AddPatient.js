@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { isAutheticated, signup } from "../controllers/authapi";
 import Base from "../core/Base";
 import { useForm } from "react-hook-form";
+import { createPatient } from "../controllers/patientapi";
 
-export default function Signup() {
+export default function AddPatient() {
   const { user, token } = isAutheticated();
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -13,10 +14,7 @@ export default function Signup() {
     setError(false);
     setSuccess(false);
     try {
-      if (formData.password != formData.confirmPassword)
-        throw "Password doesn't match";
-
-      const data = await signup(formData);
+      const data = await createPatient(user, token, formData);
       if (data.error) throw data.error;
       console.log(data);
       // setValue("name", "");
@@ -25,61 +23,62 @@ export default function Signup() {
       // setValue("category", "");
       // setValue("stock", "");
       // setValue("price", "");
-      // setSuccess("Product created");
+      setSuccess("Patient created");
     } catch (e) {
       setError(e);
       console.log(e);
     }
   };
+
   const renderForm = () => (
     <form className="was-validated">
       <div className="mb-3">
-        <label htmlFor="validationName">Name</label>
+        <label htmlFor="validationFirstName">FirstName</label>
         <input
           type="text"
           className="form-control is-invalid"
-          id="validationName"
-          placeholder="Required example Name"
+          id="validationFirstName"
+          placeholder="ชื่อจริง"
           required
           defaultValue={""}
-          name="name"
+          name="firstName"
           ref={register}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="validationEmail">Email</label>
+        <label htmlFor="validationLastName">LastName</label>
         <input
           type="text"
           className="form-control is-invalid"
-          id="validationEmail"
-          placeholder="Required example Email"
+          id="validationLastName"
+          placeholder="นามสกุล"
           required
           defaultValue={""}
-          name="email"
+          name="lastName"
           ref={register}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="validationPassword">Password</label>
+        <label htmlFor="validationAddress">Address</label>
         <input
           className="form-control is-invalid"
-          id="validationPassword"
-          placeholder="Required example Password"
+          id="validationAddress"
+          placeholder="Required example Address"
           required
           defaultValue={""}
-          name="password"
+          name="address"
           ref={register}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="validationconfirmPassword">Confirm Password</label>
+        <label htmlFor="validationPhoneNumber">PhoneNumber</label>
         <input
           className="form-control is-invalid"
-          id="validationconfirmPassword"
-          placeholder="Required example confirmPassword"
+          id="validationPhoneNumber"
+          placeholder="Required example PhoneNumber"
           required
           defaultValue={""}
-          name="confirmPassword"
+          name="phoneNumber"
           ref={register}
         />
       </div>
@@ -136,7 +135,7 @@ export default function Signup() {
       <div className="container pt-5 px-5">
         {successMessage()}
         {errorMessage()}
-        <p class="text-left font-weight-bold h3 mb-3">เพิ่มผู้ใช้งาน</p>
+        <p class="text-left font-weight-bold h3 mb-3">เพิ่มคนไข้</p>
         {renderForm()}
       </div>
     </Base>

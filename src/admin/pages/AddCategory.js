@@ -18,7 +18,6 @@ export default function AddCategory() {
     event.preventDefault();
     setError(false);
     setSuccess(false);
-
     //backend request fired
     try {
       const data = await createCategory(user._id, token, { name });

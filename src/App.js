@@ -10,14 +10,17 @@ import UpdateProduct from "./admin/pages/UpdateProduct";
 import ManageCategories from "./admin/pages/ManageCategories";
 import UpdateCategory from "./admin/pages/UpdateCategory";
 import Signup from "./pages/Signup";
-import Orders from "./admin/Orders";
+import Orders from "./admin/pages/Orders";
+import ManageUsers from "./admin/pages/ManageUsers";
+import AddPatient from "./pages/AddPatient";
 
 function App() {
   return (
     <Router>
       <Switch>
         <Route path="/" exact component={Signin} />
-        <PrivateRoute path="/Home" exact component={Home} />
+        <PrivateRoute path="/home" exact component={Home} />
+        <PrivateRoute path="/create/patient" exact component={AddPatient} />
         <AdminRoute path="/admin/create/product" exact component={AddProduct} />
         <AdminRoute
           path="/admin/create/category"
@@ -40,8 +43,10 @@ function App() {
           exact
           component={ManageCategories}
         />
+        <AdminRoute path="/admin/users" exact component={ManageUsers} />
         <AdminRoute path="/admin/orders" exact component={Orders} />
         <AdminRoute path="/signup" exact component={Signup} />
+
         {/* <Route path="/cart" exact component={Cart} /> */}
         {/* <PrivateRoute path="/user/dashboard" exact component={UserDashBoard} />
    

@@ -39,7 +39,7 @@ const Signin = () => {
 
   const performRedirect = () => {
     if (didRedirect || isAutheticated()) {
-      return <Redirect to="/Home" />;
+      return <Redirect to="/home" />;
     }
   };
 

@@ -28,8 +28,8 @@ export default function Header({ toggleSidebar }) {
           style={{ cursor: "pointer" }}
         ></i>
         <Link
-          style={currentTab("/Home")}
-          to="/Home"
+          style={currentTab("/home")}
+          to="/home"
           className="text-decoration-none"
         >
           Huayitang 𝕫
@@ -51,18 +51,26 @@ export default function Header({ toggleSidebar }) {
         <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
           {isAdmin() && (
             <li className="nav-item">
-              <Link className="nav-link" href="#" style={currentTab("/Signup")}>
+              <Link
+                className="nav-link"
+                to="/signup"
+                style={currentTab("/signup")}
+              >
                 Signup
               </Link>
             </li>
           )}
           <li className="nav-item">
             <Link
-              to="/"
+              to="/create/patient"
               className="nav-link"
-              onClick={signout}
-              style={currentTab("/Signup")}
+              style={currentTab("/create/patient")}
             >
+              New Patient
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/" className="nav-link" onClick={signout}>
               Signout
             </Link>
           </li>

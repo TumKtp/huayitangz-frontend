@@ -31,6 +31,7 @@ export default function ManageCategories() {
           <th scope="col"></th>
 
           <th scope="col">Category</th>
+          <th scope="col">Id</th>
           <th scope="col">Created At</th>
           <th scope="col">Actions</th>
         </tr>
@@ -40,8 +41,8 @@ export default function ManageCategories() {
           return (
             <tr>
               <th scope="row">{index}</th>
-
               <td>{category.name}</td>
+              <td>{category._id}</td>
               <td>{category.createdAt}</td>
               <td>
                 <div className="d-flex justify-content-around">

@@ -19,17 +19,10 @@ export default function Sidebar() {
         {isAdmin() && (
           <Fragment>
             <Link
-              to="/admin/create/product"
+              to="/admin/orders"
               className="list-group-item list-group-item-action bg-light"
             >
-              Add Product
-            </Link>
-
-            <Link
-              to="/admin/create/category"
-              className="list-group-item list-group-item-action bg-light"
-            >
-              Add Category
+              All Orders
             </Link>
             <Link
               to="/admin/products"
@@ -44,10 +37,22 @@ export default function Sidebar() {
               Manage Categories
             </Link>
             <Link
-              to="/admin/orders"
+              to="/admin/users"
               className="list-group-item list-group-item-action bg-light"
             >
-              All Orders
+              Manage Users
+            </Link>
+            <Link
+              to="/admin/create/product"
+              className="list-group-item list-group-item-action bg-light"
+            >
+              Add Product
+            </Link>
+            <Link
+              to="/admin/create/category"
+              className="list-group-item list-group-item-action bg-light"
+            >
+              Add Category
             </Link>
           </Fragment>
         )}
