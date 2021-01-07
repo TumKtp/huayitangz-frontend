@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import "./Base.css";
 export default function Base({ children }) {
-  const [sidebar, setSidebar] = useState(true);
+  const [sidebar, setSidebar] = useState(false);
 
   const toggleSidebar = (e) => {
     e.preventDefault();

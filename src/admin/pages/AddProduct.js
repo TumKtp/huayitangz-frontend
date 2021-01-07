@@ -21,7 +21,6 @@ export default function AddProduct() {
       console.log(e);
     }
   };
-
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -31,7 +30,7 @@ export default function AddProduct() {
     setSuccess(false);
     try {
       console.log(formData);
-      const data = await createProduct(user._id, token, formData);
+      const data = await createProduct(user, token, formData);
       if (data.error) throw data.error;
       console.log(data);
       // setValue("name", "");
@@ -97,9 +96,9 @@ export default function AddProduct() {
         >
           <option value="">Choose...</option>
           {categories &&
-            categories.map((cate, index) => (
-              <option key={index} value={cate._id}>
-                {cate.name}
+            categories.map((category, index) => (
+              <option key={index} value={category._id}>
+                {category.name}
               </option>
             ))}
         </select>

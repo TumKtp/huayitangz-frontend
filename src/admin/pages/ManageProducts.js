@@ -25,11 +25,16 @@ export default function MagageProducts() {
     fetchAllProducts();
   }, [fetch]);
 
+  const handleDelete = async (productId) => {
+    await deleteProduct(user, token, productId);
+    setFetch(!fetch);
+  };
+
   const renderTable = () => (
     <table className="table table-bordered">
       <thead>
         <tr>
-          <th scope="col"></th>
+          <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Category</th>
           <th scope="col">Price</th>
@@ -41,7 +46,7 @@ export default function MagageProducts() {
         {products.map((product, index) => {
           return (
             <tr>
-              <th scope="row">{index}</th>
+              <th scope="row">{index + 1}</th>
               <td>{product.name}</td>
               <td>{product.category.name}</td>
               <td>{product.price}</td>
@@ -56,10 +61,7 @@ export default function MagageProducts() {
                   <button
                     type="button"
                     className="btn btn-danger"
-                    onClick={async () => {
-                      await deleteProduct(user._id, token, product._id);
-                      setFetch(!fetch);
-                    }}
+                    onClick={() => handleDelete(product._id)}
                   >
                     <i class="fa fa-trash" aria-hidden="true"></i>
                   </button>

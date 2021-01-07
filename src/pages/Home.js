@@ -5,6 +5,7 @@ import { getAllProducts } from "../controllers/productapi";
 import { isAutheticated } from "../controllers/authapi";
 import { createOrder } from "../controllers/orderapi";
 import { getAllPatients } from "../controllers/patientapi";
+import { getCategories } from "../admin/controllers/categoryapi";
 
 export default function Home() {
   const { user, token } = isAutheticated();
@@ -14,7 +15,10 @@ export default function Home() {
   const [cart, setCart] = useState([]);
   const [patients, setPatients] = useState([]);
   const [patientId, setPatientId] = useState(false);
+  const [categories, setCategories] = useState([]);
   const [herbPackage, setHerbPackage] = useState(0);
+  const [radioValue, setRadioValue] = useState();
+  const [textFilter, setTextFilter] = useState();
 
   useEffect(() => {
     const fetchAllProducts = async () => {
@@ -39,8 +43,19 @@ export default function Home() {
         setError("Unable to get patients");
       }
     };
+    const fetchCategories = async () => {
+      try {
+        const data = await getCategories();
+        if (data.error) throw data.error;
+        setCategories(data);
+      } catch (e) {
+        setError("Unable to get categories");
+        console.log(e);
+      }
+    };
     fetchAllProducts();
     fetchAllPatients();
+    fetchCategories();
   }, []);
 
   // All Functions
@@ -116,6 +131,14 @@ export default function Home() {
       }
       return 1;
     });
+  };
+
+  const handleRadioFilter = (event) => {
+    setRadioValue(event.target.value);
+  };
+
+  const handleTextFilter = (event) => {
+    setTextFilter(event.target.value);
   };
 
   // Rendering Function
@@ -292,19 +315,28 @@ export default function Home() {
     </div>
   );
 
-  const renderAllProducts = () => (
-    <div className="row">
-      {products.map((product, index) => {
-        return (
-          <div key={index} className="col-sm-12 col-md-4 col-lg-3  mb-4 ">
-            <div className="cnt-block equal-hight">
-              <Card product={product} addToCart={addToCart} />
+  const renderAllProducts = () => {
+    // If radioValue or textFilter is empty return true
+    // but if it's not empty, filter it.
+    const filteredProducts = products.filter(
+      (product) =>
+        (!radioValue || product.category.name == radioValue) &&
+        (!textFilter || product.name.includes(textFilter))
+    );
+    return (
+      <div className="row">
+        {filteredProducts.map((product, index) => {
+          return (
+            <div key={index} className="col-sm-12 col-md-4 col-lg-3  mb-4 ">
+              <div className="cnt-block equal-hight">
+                <Card product={product} addToCart={addToCart} />
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
-  );
+          );
+        })}
+      </div>
+    );
+  };
 
   const renderItemsInCart = () => {
     var lastCategory;
@@ -344,6 +376,31 @@ export default function Home() {
       </Fragment>
     );
   };
+
+  const renderFilter = () => (
+    <div className="input-group row justify-content-md-center mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">
+          <i class="fa fa-search" aria-hidden="true" />
+        </span>
+      </div>
+      <input
+        type="text"
+        className="form-control col-6"
+        placeholder="ค้นหาสินค้า"
+        onChange={handleTextFilter}
+      />
+      <select className="form-control col-3" onChange={handleRadioFilter}>
+        <option value="" selected>
+          ทั้งหมด
+        </option>
+        {categories &&
+          categories.map((category, index) => (
+            <option value={category.name}>{category.name}</option>
+          ))}
+      </select>
+    </div>
+  );
 
   const errorMessage = () =>
     error && (
@@ -389,7 +446,7 @@ export default function Home() {
           {successMessage()}
           {errorMessage()}
           <div className="text-center display-4 mb-3 col-12">สินค้าทั้งหมด</div>
-
+          {renderFilter()}
           {renderAllProducts()}
         </div>
         {/* Right Sidebar */}

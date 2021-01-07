@@ -1,10 +1,10 @@
 import { API } from "../../backend";
 
 //create a product
-export const createProduct = async (userId, token, product) => {
+export const createProduct = async (user, token, product) => {
   console.log(JSON.stringify(product));
   return (
-    await fetch(`${API}/product/create/${userId}`, {
+    await fetch(`${API}/product/create/${user._id}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -17,9 +17,9 @@ export const createProduct = async (userId, token, product) => {
 };
 
 //delete a product
-export const deleteProduct = async (userId, token, productId) => {
+export const deleteProduct = async (user, token, productId) => {
   return (
-    await fetch(`${API}/product/${productId}/${userId}`, {
+    await fetch(`${API}/product/${productId}/${user._id}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

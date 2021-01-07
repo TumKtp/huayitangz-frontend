@@ -119,9 +119,9 @@ export default function UpdateProduct({ match }) {
         >
           <option value="">Choose...</option>
           {categories &&
-            categories.map((cate, index) => (
-              <option key={index} value={cate._id}>
-                {cate.name}
+            categories.map((category, index) => (
+              <option key={index} value={category._id}>
+                {category.name}
               </option>
             ))}
         </select>

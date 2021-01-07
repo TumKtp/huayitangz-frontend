@@ -22,7 +22,7 @@ export default function Sidebar() {
               to="/admin/orders"
               className="list-group-item list-group-item-action bg-light"
             >
-              All Orders
+              Manage Orders
             </Link>
             <Link
               to="/admin/products"
@@ -58,10 +58,16 @@ export default function Sidebar() {
         )}
 
         <Link
-          href="#"
+          to="/stock"
           className="list-group-item list-group-item-action bg-light"
         >
           Stock
+        </Link>
+        <Link
+          to="/orders"
+          className="list-group-item list-group-item-action bg-light"
+        >
+          รายการที่สั่ง
         </Link>
       </div>
     </div>

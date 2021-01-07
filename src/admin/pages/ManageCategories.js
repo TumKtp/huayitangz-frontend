@@ -10,25 +10,30 @@ export default function ManageCategories() {
   const [error, setError] = useState(false);
   const [fetch, setFetch] = useState(true);
 
-  const fetchCategories = async () => {
-    try {
-      const data = await getCategories();
-      if (data.error) throw data.error;
-      setCategories(data);
-    } catch (e) {
-      setError(e);
-      console.log(e);
-    }
-  };
   useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await getCategories();
+        if (data.error) throw data.error;
+        setCategories(data);
+      } catch (e) {
+        setError(e);
+        console.log(e);
+      }
+    };
     fetchCategories();
   }, [fetch]);
+
+  const handleDelete = async (categoryId) => {
+    await deleteCategory(user._id, token, categoryId);
+    setFetch(!fetch);
+  };
 
   const renderTable = () => (
     <table className="table table-bordered">
       <thead>
         <tr>
-          <th scope="col"></th>
+          <th scope="col">#</th>
 
           <th scope="col">Category</th>
           <th scope="col">Id</th>
@@ -40,7 +45,7 @@ export default function ManageCategories() {
         {categories.map((category, index) => {
           return (
             <tr>
-              <th scope="row">{index}</th>
+              <th scope="row">{index + 1}</th>
               <td>{category.name}</td>
               <td>{category._id}</td>
               <td>{category.createdAt}</td>
@@ -54,10 +59,7 @@ export default function ManageCategories() {
                   <button
                     type="button"
                     className="btn btn-danger"
-                    onClick={async () => {
-                      await deleteCategory(user._id, token, category._id);
-                      setFetch(!fetch);
-                    }}
+                    onClick={() => handleDelete(category._id)}
                   >
                     <i class="fa fa-trash" aria-hidden="true"></i>
                   </button>
