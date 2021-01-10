@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="main-footer">
+    <footer className="main-footer m-3">
       <strong>
-        Copyright © 2020 <Link to="/Home">Huayitang</Link>.
+        Copyright © 2021 <Link to="/home">คลินิกฮัวอุยตึ๊ง</Link>.
       </strong>
 
       <div className="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.0.0
+        <b>Version</b> 0.1.0
       </div>
     </footer>
   );

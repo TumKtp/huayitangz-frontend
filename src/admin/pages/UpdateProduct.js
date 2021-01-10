@@ -19,7 +19,7 @@ export default function UpdateProduct({ match }) {
         if (data.error) throw data.error;
         setCategories(data);
       } catch (e) {
-        setError(e);
+        setError("โหลดข้อมูลประเภทสินค้าไม่สำเร็จ");
         console.log(e);
       }
     };
@@ -36,7 +36,7 @@ export default function UpdateProduct({ match }) {
         setValue("stock", data.stock);
         setValue("price", data.price);
       } catch (e) {
-        setError(e);
+        setError("โหลดข้อมูลสินค้าไม่สำเร็จ");
         console.log(e);
       }
     };
@@ -64,7 +64,7 @@ export default function UpdateProduct({ match }) {
       // setValue("price", "");
       setSuccess("Product updated");
     } catch (e) {
-      setError(e);
+      setError("อัพเดทข้อมูลไม่สำเร็จ");
       console.log(e);
     }
   };
@@ -72,44 +72,39 @@ export default function UpdateProduct({ match }) {
   const renderForm = () => (
     <form className="was-validated">
       <div className="mb-3">
-        <label htmlFor="validationName">Name</label>
+        <label htmlFor="validationName">ชื่อสินค้า</label>
         <input
           type="text"
           className="form-control is-invalid"
           id="validationName"
-          placeholder="Required example Name"
+          placeholder="เช่น ชาเบะเก๊ ค่าแม๊ะ หรือค่าฝังเข็ม"
           required
-          defaultValue={""}
           name="name"
           ref={register}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="validationTextarea">Description</label>
+        <label htmlFor="validationTextarea">คำอธิบายเพิมเติม (ไม่จำเป็น)</label>
         <textarea
           className="form-control is-invalid"
           id="validationTextarea"
-          placeholder="Required example textarea"
-          required
-          defaultValue={""}
           name="description"
           ref={register}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="validationImageUrl">ImageUrl</label>
+        <label htmlFor="validationImageUrl">ลิ้งค์รูปภาพ</label>
         <input
           className="form-control is-invalid"
           id="validationImageUrl"
-          placeholder="Required example ImageUrl"
+          placeholder="เช่น https://res.cloudinary.com/image/HuayitangZ.jpg"
           required
-          defaultValue={""}
           name="imageUrl"
           ref={register}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="categoryId">Category</label>
+        <label htmlFor="categoryId">ประเภทของสินค้า</label>
         <select
           className="custom-select"
           id="categoryId"
@@ -131,7 +126,7 @@ export default function UpdateProduct({ match }) {
         <div className="input-group is-invalid col-6">
           <div className="input-group-prepend">
             <span className="input-group-text" id="validatedInputGroupPrepend">
-              stock
+              สต๊อก
             </span>
           </div>
           <input
@@ -166,7 +161,7 @@ export default function UpdateProduct({ match }) {
           className="btn btn-outline-success mt-3 btn-lg col-2"
           onClick={handleSubmit(onSubmit)}
         >
-          Update
+          ยืนยัน
         </button>
       </div>
     </form>
@@ -213,7 +208,7 @@ export default function UpdateProduct({ match }) {
       <div className="container pt-5 px-5">
         {errorMessage()}
         {successMessage()}
-        <div className="text-center display-4 mb-3 col-12">Update product</div>
+        <div className="text-center display-4 mb-3 col-12">แก้ไขสินค้า</div>
         {renderForm()}
       </div>
     </Base>

@@ -17,7 +17,7 @@ export default function AddProduct() {
       if (data.error) throw data.error;
       setCategories(data);
     } catch (e) {
-      setError(e);
+      setError("โหลดข้อมูลประเภทสินค้าไม่สำเร็จ");
       console.log(e);
     }
   };
@@ -39,9 +39,9 @@ export default function AddProduct() {
       // setValue("category", "");
       // setValue("stock", "");
       // setValue("price", "");
-      setSuccess("Product created");
+      setSuccess("เพิ่มสินค้าใหม่เรียบร้อย");
     } catch (e) {
-      setError(e);
+      setError("ไม่สามารถเพิ่มสินค้าได้ โปรดลองชื่อสินค้าอื่น");
       console.log(e);
     }
   };
@@ -49,44 +49,39 @@ export default function AddProduct() {
   const renderForm = () => (
     <form className="was-validated">
       <div className="mb-3">
-        <label htmlFor="validationName">Name</label>
+        <label htmlFor="validationName">ชื่อสินค้า</label>
         <input
           type="text"
           className="form-control is-invalid"
           id="validationName"
-          placeholder="Required example Name"
+          placeholder="เช่น ชาเบะเก๊ ค่าแม๊ะ หรือค่าฝังเข็ม"
           required
-          defaultValue={""}
           name="name"
           ref={register}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="validationTextarea">Description</label>
+        <label htmlFor="validationTextarea">คำอธิบายเพิมเติม (ไม่จำเป็น)</label>
         <textarea
           className="form-control is-invalid"
           id="validationTextarea"
-          placeholder="Required example textarea"
-          required
-          defaultValue={""}
           name="description"
           ref={register}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="validationImageUrl">ImageUrl</label>
+        <label htmlFor="validationImageUrl">ลิ้งค์รูปภาพ</label>
         <input
           className="form-control is-invalid"
           id="validationImageUrl"
-          placeholder="Required example ImageUrl"
+          placeholder="เช่น https://res.cloudinary.com/image/HuayitangZ.jpg"
           required
-          defaultValue={""}
           name="imageUrl"
           ref={register}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="categoryId">Category</label>
+        <label htmlFor="categoryId">ประเภทของสินค้า</label>
         <select
           className="custom-select"
           id="categoryId"
@@ -94,7 +89,7 @@ export default function AddProduct() {
           name="category"
           ref={register}
         >
-          <option value="">Choose...</option>
+          <option value="">เลือกประเภท...</option>
           {categories &&
             categories.map((category, index) => (
               <option key={index} value={category._id}>
@@ -108,7 +103,7 @@ export default function AddProduct() {
         <div className="input-group is-invalid col-6">
           <div className="input-group-prepend">
             <span className="input-group-text" id="validatedInputGroupPrepend">
-              stock
+              สต๊อก
             </span>
           </div>
           <input
@@ -143,7 +138,7 @@ export default function AddProduct() {
           className="btn btn-outline-success mt-3 btn-lg col-2"
           onClick={handleSubmit(onSubmit)}
         >
-          Create
+          เพิ่ม
         </button>
       </div>
     </form>
@@ -190,7 +185,7 @@ export default function AddProduct() {
       <div className="container pt-5 px-5">
         {errorMessage()}
         {successMessage()}
-        <p className="text-left font-weight-bold h3 mb-3">Add product</p>
+        <p className="text-left font-weight-bold h3 mb-3">เพิ่มสินค้าใหม่</p>
         {renderForm()}
       </div>
     </Base>

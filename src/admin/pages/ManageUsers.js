@@ -16,7 +16,7 @@ export default function ManageUsers() {
         if (data.error) throw data.error;
         setUsers(data);
       } catch (e) {
-        setError(e);
+        setError("โหลดข้อมูลผู้ใช้งานไม่สำเร็จ");
         console.log(e);
       }
     };
@@ -28,10 +28,10 @@ export default function ManageUsers() {
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Role</th>
-          <th scope="col">Created At</th>
+          <th scope="col">ชื่อผู้ใช้งาน</th>
+          <th scope="col">อีเมล</th>
+          <th scope="col">ตำแหน่ง</th>
+          <th scope="col">วันที่เพิ่มข้อมูล</th>
         </tr>
       </thead>
       <tbody>
@@ -41,10 +41,16 @@ export default function ManageUsers() {
               <th scope="row">{index + 1}</th>
               <td>{user.name}</td>
               <td>{user.email}</td>
-              <td>{user.role}</td>
+              <td>
+                {user.role === 0
+                  ? "พนักงานทั่วไป"
+                  : user.role === 1
+                  ? "แพทย์"
+                  : "ผู้ดูแลระบบ"}
+              </td>
               <td>
                 <div className="d-flex justify-content-around">
-                  <button type="button" className="btn btn-primary">
+                  <button type="button" className="btn btn-secondary">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                   </button>
                   <button type="button" className="btn btn-danger">
@@ -80,7 +86,9 @@ export default function ManageUsers() {
     <Base>
       <div className="container pt-5 px-5 ">
         {errorMessage()}
-        <div className="text-center display-4 mb-3 col-12">All categories</div>
+        <div className="text-center display-4 mb-3 col-12">
+          ผู้ใช้งานทั้งหมด
+        </div>
         {renderTable()}
       </div>
     </Base>

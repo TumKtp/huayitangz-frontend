@@ -34,7 +34,7 @@ export default function Signup() {
   const renderForm = () => (
     <form className="was-validated">
       <div className="mb-3">
-        <label htmlFor="validationName">Name</label>
+        <label htmlFor="validationName">ชื่อผู้ใช้งาน</label>
         <input
           type="text"
           className="form-control is-invalid"
@@ -47,7 +47,7 @@ export default function Signup() {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="validationEmail">Email</label>
+        <label htmlFor="validationEmail">อีเมล</label>
         <input
           type="text"
           className="form-control is-invalid"
@@ -60,7 +60,7 @@ export default function Signup() {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="validationPassword">Password</label>
+        <label htmlFor="validationPassword">รหัสผ่าน</label>
         <input
           className="form-control is-invalid"
           id="validationPassword"
@@ -72,7 +72,7 @@ export default function Signup() {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="validationconfirmPassword">Confirm Password</label>
+        <label htmlFor="validationconfirmPassword">ยืนยันรหัสผ่าน</label>
         <input
           className="form-control is-invalid"
           id="validationconfirmPassword"
@@ -84,7 +84,7 @@ export default function Signup() {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="roleTag">Category</label>
+        <label htmlFor="roleTag">ตำแหน่ง</label>
         <select
           className="custom-select"
           id="roleTag"
@@ -92,9 +92,9 @@ export default function Signup() {
           name="role"
           ref={register}
         >
-          <option value="0">Normal user</option>
-          <option value="1">Doctor</option>
-          <option value="2">Admin</option>
+          <option value="0">พนักงานทั่วไป</option>
+          <option value="1">แพทย์</option>
+          <option value="2">ผู้ดูแลระบบ</option>
         </select>
       </div>
       <div className="d-flex flex-row-reverse">
@@ -103,7 +103,7 @@ export default function Signup() {
           className="btn btn-outline-success mt-3 btn-lg col-2"
           onClick={handleSubmit(onSubmit)}
         >
-          Create
+          ลงทะเบียน
         </button>
       </div>
     </form>

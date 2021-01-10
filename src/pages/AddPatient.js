@@ -17,15 +17,9 @@ export default function AddPatient() {
       const data = await createPatient(user, token, formData);
       if (data.error) throw data.error;
       console.log(data);
-      // setValue("name", "");
-      // setValue("description", "");
-      // setValue("imageUrl", "");
-      // setValue("category", "");
-      // setValue("stock", "");
-      // setValue("price", "");
-      setSuccess("Patient created");
+      setSuccess("เพิ่มข้อมูคนไข้ใหม่เรียบร้อย");
     } catch (e) {
-      setError(e);
+      setError("เพิ่มข้อมูลคนไข้ไม่สำเร็จ");
       console.log(e);
     }
   };
@@ -33,12 +27,12 @@ export default function AddPatient() {
   const renderForm = () => (
     <form className="was-validated">
       <div className="mb-3">
-        <label htmlFor="validationFirstName">FirstName</label>
+        <label htmlFor="validationFirstName">ชื่อจริง</label>
         <input
           type="text"
           className="form-control is-invalid"
           id="validationFirstName"
-          placeholder="ชื่อจริง"
+          placeholder="โปรดใส่คำนำหน้า และชื่อ"
           required
           defaultValue={""}
           name="firstName"
@@ -46,7 +40,7 @@ export default function AddPatient() {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="validationLastName">LastName</label>
+        <label htmlFor="validationLastName">นามสกุล</label>
         <input
           type="text"
           className="form-control is-invalid"
@@ -59,11 +53,11 @@ export default function AddPatient() {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="validationAddress">Address</label>
+        <label htmlFor="validationAddress">ที่อยูู่</label>
         <input
           className="form-control is-invalid"
           id="validationAddress"
-          placeholder="Required example Address"
+          placeholder="ที่อยู่"
           required
           defaultValue={""}
           name="address"
@@ -71,7 +65,7 @@ export default function AddPatient() {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="validationPhoneNumber">PhoneNumber</label>
+        <label htmlFor="validationPhoneNumber">เบอร์มือถือ</label>
         <input
           className="form-control is-invalid"
           id="validationPhoneNumber"
@@ -88,7 +82,7 @@ export default function AddPatient() {
           className="btn btn-outline-success mt-3 btn-lg col-2"
           onClick={handleSubmit(onSubmit)}
         >
-          Create
+          ลงทะเบียน
         </button>
       </div>
     </form>

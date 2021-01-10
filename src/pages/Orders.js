@@ -121,6 +121,7 @@ export default function Orders() {
                   {order.patient.firstName} {order.patient.lastName}
                 </td>
                 <td>{order.patient.address}</td>
+                <td>{order.patient.phoneNumber}</td>
                 <td>{order.status}</td>
                 <td>{order.amount}</td>
                 <td>
@@ -137,7 +138,7 @@ export default function Orders() {
                 </td>
               </tr>
               <tr>
-                <td colSpan="7" className="hiddenRow">
+                <td colSpan="8" className="hiddenRow">
                   <div className="collapse" id={`multiCollapse${index}`}>
                     <div className="card-body">
                       {renderIndividualOrder(order)}
@@ -171,9 +172,10 @@ export default function Orders() {
           <th scope="col">ผู้สั่ง</th>
           <th scope="col">ชื่อคนไข้</th>
           <th scope="col">ที่อยู่</th>
+          <th scope="col">เบอร์โทร</th>
           <th scope="col">สถานะ</th>
           <th scope="col">ราคา</th>
-          <th scope="col">Action</th>
+          <th scope="col">อื่นๆ</th>
         </tr>
       </thead>
       {renderAllOrders()}

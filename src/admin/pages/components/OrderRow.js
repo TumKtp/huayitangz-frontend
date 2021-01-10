@@ -75,6 +75,7 @@ export default function OrderRow({ order, index, fetchFunction, allStatus }) {
           {order.patient.firstName} {order.patient.lastName}
         </td>
         <td>{order.patient.address}</td>
+        <td>{order.patient.phoneNumber}</td>
         <td>
           {edit ? (
             <div className="form-row">
@@ -132,7 +133,7 @@ export default function OrderRow({ order, index, fetchFunction, allStatus }) {
         </td>
       </tr>
       <tr>
-        <td colSpan="7" className="hiddenRow">
+        <td colSpan="8" className="hiddenRow">
           <div className="collapse" id={`multiCollapse${index}`}>
             <div className="card-body">
               {renderIndividualOrder(order)}

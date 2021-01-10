@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { isAutheticated } from "../../controllers/authapi";
-import { getAllProducts } from "../../controllers/productapi";
-import Base from "../../core/Base";
-import { deleteProduct } from "../controllers/productapi";
+import Base from "../core/Base";
+import { getAllProducts } from "../controllers/productapi";
+import { isAutheticated } from "../controllers/authapi";
 
-export default function MagageProducts() {
+export default function Stock() {
   const { user, token } = isAutheticated();
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false);
-  const [fetch, setFetch] = useState(true);
 
   useEffect(() => {
     const fetchAllProducts = async () => {
@@ -23,12 +20,7 @@ export default function MagageProducts() {
       }
     };
     fetchAllProducts();
-  }, [fetch]);
-
-  const handleDelete = async (productId) => {
-    await deleteProduct(user, token, productId);
-    setFetch(!fetch);
-  };
+  }, []);
 
   const renderTable = () => (
     <table className="table table-bordered">
@@ -39,7 +31,6 @@ export default function MagageProducts() {
           <th scope="col">ประเภท</th>
           <th scope="col">ราคา</th>
           <th scope="col">สต๊อกสินค้า</th>
-          <th scope="col">อื่นๆ</th>
         </tr>
       </thead>
       <tbody>
@@ -51,22 +42,6 @@ export default function MagageProducts() {
               <td>{product.category.name}</td>
               <td>{product.price}</td>
               <td>{product.stock}</td>
-              <td>
-                <div className="d-flex justify-content-around">
-                  <Link to={`/admin/product/update/${product._id}`}>
-                    <button type="button" className="btn btn-secondary">
-                      <i class="fa fa-pencil" aria-hidden="true" />
-                    </button>
-                  </Link>
-                  <button
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={() => handleDelete(product._id)}
-                  >
-                    <i class="fa fa-trash" aria-hidden="true" />
-                  </button>
-                </div>
-              </td>
             </tr>
           );
         })}

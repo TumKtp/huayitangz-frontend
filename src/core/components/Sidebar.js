@@ -5,7 +5,7 @@ export default function Sidebar() {
   return (
     <div className="bg-light border-right" id="sidebar-wrapper">
       <div className="sidebar-heading d-flex justify-content-center ">
-        <Link to="/Home" className="text-decoration-none ">
+        <Link to="/home" className="text-decoration-none ">
           <img
             style={{ width: "100px" }}
             src={process.env.PUBLIC_URL + "/logo.png"}
@@ -16,12 +16,18 @@ export default function Sidebar() {
         </Link>
       </div>
       <div className="list-group list-group-flush">
+        <Link
+          to="/home"
+          className="list-group-item list-group-item-action bg-light"
+        >
+          หน้าหลัก
+        </Link>
         {isDoctor() && (
           <Link
             to="/admin/orders"
             className="list-group-item list-group-item-action bg-light"
           >
-            Manage Orders
+            จัดการคำสั่งซื้อ
           </Link>
         )}
         {isAdmin() && (
@@ -30,31 +36,31 @@ export default function Sidebar() {
               to="/admin/products"
               className="list-group-item list-group-item-action bg-light"
             >
-              Manage Products
+              จัดการสินค้า
             </Link>
             <Link
               to="/admin/categories"
               className="list-group-item list-group-item-action bg-light"
             >
-              Manage Categories
+              จัดการประเภท
             </Link>
             <Link
               to="/admin/users"
               className="list-group-item list-group-item-action bg-light"
             >
-              Manage Users
+              จัดการผู้ใช้งาน
             </Link>
             <Link
               to="/admin/create/product"
               className="list-group-item list-group-item-action bg-light"
             >
-              Add Product
+              เพิ่มสินค้า
             </Link>
             <Link
               to="/admin/create/category"
               className="list-group-item list-group-item-action bg-light"
             >
-              Add Category
+              เพิ่มประเภทของสินค้า
             </Link>
           </Fragment>
         )}
@@ -63,7 +69,7 @@ export default function Sidebar() {
           to="/stock"
           className="list-group-item list-group-item-action bg-light"
         >
-          Stock
+          สต๊อกสินค้า
         </Link>
         <Link
           to="/orders"

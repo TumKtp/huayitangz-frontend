@@ -17,7 +17,7 @@ export default function ManageCategories() {
         if (data.error) throw data.error;
         setCategories(data);
       } catch (e) {
-        setError(e);
+        setError("โหลดข้อมูลประเภทสินค้าไม่สำเร็จ");
         console.log(e);
       }
     };
@@ -35,10 +35,10 @@ export default function ManageCategories() {
         <tr>
           <th scope="col">#</th>
 
-          <th scope="col">Category</th>
-          <th scope="col">Id</th>
-          <th scope="col">Created At</th>
-          <th scope="col">Actions</th>
+          <th scope="col">ชื่อประเภท</th>
+
+          <th scope="col">วันที่เพิ่ม</th>
+          <th scope="col">อื่นๆ</th>
         </tr>
       </thead>
       <tbody>
@@ -47,13 +47,13 @@ export default function ManageCategories() {
             <tr>
               <th scope="row">{index + 1}</th>
               <td>{category.name}</td>
-              <td>{category._id}</td>
-              <td>{category.createdAt}</td>
+
+              <td>{category.createdAt.slice(0, 10)}</td>
               <td>
                 <div className="d-flex justify-content-around">
                   <Link to={`/admin/category/update/${category._id}`}>
-                    <button type="button" className="btn btn-primary">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <button type="button" className="btn btn-secondary">
+                      <i class="fa fa-pencil" aria-hidden="true" />
                     </button>
                   </Link>
                   <button
@@ -61,7 +61,7 @@ export default function ManageCategories() {
                     className="btn btn-danger"
                     onClick={() => handleDelete(category._id)}
                   >
-                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    <i class="fa fa-trash" aria-hidden="true" />
                   </button>
                 </div>
               </td>
@@ -94,7 +94,7 @@ export default function ManageCategories() {
     <Base>
       <div className="container pt-5 px-5 ">
         {errorMessage()}
-        <div className="text-center display-4 mb-3 col-12">All categories</div>
+        <div className="text-center display-4 mb-3 col-12">ประเภททั้งหมด</div>
         {renderTable()}
       </div>
     </Base>

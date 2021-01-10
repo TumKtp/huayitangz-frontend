@@ -15,7 +15,7 @@ export default function UpdateCategory({ match }) {
         if (data.error) throw data.error;
         setName(data.name);
       } catch (e) {
-        setError(e);
+        setError("โหลดข้อมูลประเภทสินค้าไม่สำเร็จ");
         console.log(e);
       }
     };
@@ -42,18 +42,18 @@ export default function UpdateCategory({ match }) {
       setSuccess("Category updated");
       // setName("");
     } catch (e) {
-      setError(e);
+      setError("อัพเดทข้อมูลไม่สำเร็จ");
     }
   };
 
   const renderForm = () => (
     <form className="was-validated">
       <div className="mb-3">
-        <label htmlFor="validationCategory">Category</label>
+        <label htmlFor="validationCategory">ชื่อประเภท</label>
         <input
           className="form-control is-invalid"
           id="validationCategory"
-          placeholder="Required example Category"
+          placeholder="เช่น ค่ารักษา หรือค่ายาสมุนไพร"
           required
           type="text"
           onChange={handleChange}
@@ -66,7 +66,7 @@ export default function UpdateCategory({ match }) {
           className="btn btn-outline-success"
           onClick={onSubmit}
         >
-          Update
+          ยืนยัน
         </button>
       </div>
     </form>
@@ -113,7 +113,7 @@ export default function UpdateCategory({ match }) {
       <div className="container pt-5 px-5">
         {errorMessage()}
         {successMessage()}
-        <div className="text-center display-4 mb-3 col-12">Update category</div>
+        <div className="text-center display-4 mb-3 col-12">แก้ไขชื่อประเภท</div>
         {renderForm()}
       </div>
     </Base>

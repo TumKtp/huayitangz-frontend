@@ -21,7 +21,7 @@ export default function ManageOrders() {
         setStatus(data);
       } catch (e) {
         console.log(e);
-        setError("Unable to get order status");
+        setError("โหลดข้อมูลสถานะไม่สำเร็จ");
       }
     };
     fetchOrderStatus();
@@ -37,7 +37,7 @@ export default function ManageOrders() {
         console.log("ALLORDER", data);
       } catch (e) {
         console.log(e);
-        setError("Unable to get products");
+        setError("โหลดข้อมูลสินค้าไม่สำเร็จ");
       }
     };
     fetchAllOrders();
@@ -115,6 +115,7 @@ export default function ManageOrders() {
           <th scope="col">ผู้สั่ง</th>
           <th scope="col">ชื่อคนไข้</th>
           <th scope="col">ที่อยู่</th>
+          <th scope="col">เบอร์โทร</th>
           <th scope="col">สถานะ</th>
           <th scope="col">ราคา</th>
           <th scope="col">อื่นๆ</th>

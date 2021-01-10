@@ -15,7 +15,7 @@ export default function Home() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [patients, setPatients] = useState([]);
-  const [patientId, setPatientId] = useState(false);
+  const [patientId, setPatientId] = useState();
   const [categories, setCategories] = useState([]);
   const [herbPackage, setHerbPackage] = useState(0);
   const [radioValue, setRadioValue] = useState();
@@ -30,7 +30,7 @@ export default function Home() {
         // console.log(data);
       } catch (e) {
         console.log(e);
-        setError("Unable to get products");
+        setError("โหลดข้อมูลสินค้าไม่สำเร็จ");
       }
     };
     const fetchAllPatients = async () => {
@@ -41,7 +41,7 @@ export default function Home() {
         console.log(data);
       } catch (e) {
         console.log(e);
-        setError("Unable to get patients");
+        setError("โหลดข้อมูลคนไข้ไม่สำเร็จ");
       }
     };
     const fetchCategories = async () => {
@@ -50,7 +50,7 @@ export default function Home() {
         if (data.error) throw data.error;
         setCategories(data);
       } catch (e) {
-        setError("Unable to get categories");
+        setError("โหลดข้อมูลประเภทสินค้าไม่สำเร็จ");
         console.log(e);
       }
     };
@@ -115,6 +115,9 @@ export default function Home() {
       patient: patientId,
       herbPackage,
     };
+    console.log(patientId);
+    if (patientId === undefined)
+      return setError("โปรดเลือกชื่อคนไข้ในคำสั่งซื้อ");
     try {
       const data = await createOrder(user, token, order);
       if (data.error) throw data.error;

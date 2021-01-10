@@ -15,16 +15,19 @@ import ManageUsers from "./admin/pages/ManageUsers";
 import AddPatient from "./pages/AddPatient";
 import Orders from "./pages/Orders";
 import DoctorRoute from "./routes/DoctorRoute";
+import Stock from "./pages/Stock";
 
 function App() {
   return (
     <Router>
       <Switch>
         <Route path="/" exact component={Signin} />
-        <DoctorRoute path="/admin/orders" exact component={ManageOrders} />
+
         <PrivateRoute path="/home" exact component={Home} />
         <PrivateRoute path="/create/patient" exact component={AddPatient} />
         <PrivateRoute path="/orders" exact component={Orders} />
+        <PrivateRoute path="/stock" exact component={Stock} />
+        <DoctorRoute path="/admin/orders" exact component={ManageOrders} />
         <AdminRoute path="/admin/create/product" exact component={AddProduct} />
         <AdminRoute
           path="/admin/create/category"
@@ -49,7 +52,7 @@ function App() {
         />
         <AdminRoute path="/admin/users" exact component={ManageUsers} />
         <AdminRoute path="/signup" exact component={Signup} />
-
+        <Route path="" component={Signin} />
         {/* <Route path="/cart" exact component={Cart} /> */}
         {/* <PrivateRoute path="/user/dashboard" exact component={UserDashBoard} />
          */}

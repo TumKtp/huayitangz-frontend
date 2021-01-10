@@ -9,7 +9,7 @@ export default function Header({ toggleSidebar }) {
     if (realPath === path) {
       return { color: "#20639B" };
     } else {
-      return { color: "#000000" };
+      return { color: "#000000", opacity: "0.5" };
     }
   };
   return (
@@ -51,27 +51,19 @@ export default function Header({ toggleSidebar }) {
         <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
           {isAdmin() && (
             <li className="nav-item">
-              <Link
-                className="nav-link"
-                to="/signup"
-                style={currentTab("/signup")}
-              >
-                Signup
+              <Link className="nav-link" to="/signup">
+                เพิ่มผู้ใช้
               </Link>
             </li>
           )}
           <li className="nav-item">
-            <Link
-              to="/create/patient"
-              className="nav-link"
-              style={currentTab("/create/patient")}
-            >
-              New Patient
+            <Link to="/create/patient" className="nav-link">
+              เพิ่มคนไข้
             </Link>
           </li>
           <li className="nav-item">
             <Link to="/" className="nav-link" onClick={signout}>
-              Signout
+              ออกจากระบบ
             </Link>
           </li>
           {/* <li className="nav-item dropdown">
@@ -105,46 +97,5 @@ export default function Header({ toggleSidebar }) {
         </ul>
       </div>
     </nav>
-
-    // <nav className="main-header navbar navbar-expand navbar-white navbar-light">
-    //   {/* Left navbar links */}
-    //   <ul className="navbar-nav">
-    //     <li className="nav-item">
-    //       <Link className="nav-link" data-widget="pushmenu" role="button">
-    //         <i className="fas fa-bars" />
-    //       </Link>
-    //     </li>
-
-    //     <li className="nav-item d-none d-sm-inline-block">
-    //       <Link to="/Home" className="nav-link">
-    //         Home
-    //       </Link>
-    //     </li>
-    //     <li className="nav-item d-none d-sm-inline-block">
-    //       <Link to="/Cart" className="nav-link">
-    //         Cart
-    //       </Link>
-    //     </li>
-    //   </ul>
-
-    //   {/* Right navbar links */}
-    //   <ul className="navbar-nav ml-auto">
-    //     <li className="nav-item">
-    //       <Link to="/Signup" className="nav-link">
-    //         Signup
-    //       </Link>
-    //     </li>
-    //     <li className="nav-item">
-    //       <Link to="/" className="nav-link" onClick={signout}>
-    //         Signout
-    //       </Link>
-    //     </li>
-    //     <li className="nav-item">
-    //       <Link className="nav-link" data-widget="fullscreen" role="button">
-    //         <i className="fas fa-expand-arrows-alt" />
-    //       </Link>
-    //     </li>
-    //   </ul>
-    // </nav>
   );
 }

@@ -17,11 +17,12 @@ export default function Base({ children }) {
         <Sidebar />
         <div id="page-content-wrapper">
           <Header toggleSidebar={toggleSidebar} />
-
-          <div className="container-fluid">{children}</div>
+          <div className="container-fluid" style={{ minHeight: "100vh" }}>
+            {children}
+          </div>
+          <Footer />
         </div>
       </div>
-      <Footer />
     </Fragment>
   );
 }

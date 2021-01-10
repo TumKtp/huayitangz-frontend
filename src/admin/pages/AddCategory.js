@@ -22,21 +22,22 @@ export default function AddCategory() {
     try {
       const data = await createCategory(user._id, token, { name });
       if (data.error) throw data.error;
-      setSuccess("Category created");
+      console.log(data);
+      setSuccess(`เพิ่ม ${data.newCate.name} เรียบร้อย`);
       setName("");
     } catch (e) {
-      setError(e);
+      setError("ไม่สามารถเพิ่มประเภทได้");
     }
   };
 
   const renderForm = () => (
     <form className="was-validated">
       <div className="mb-3">
-        <label htmlFor="validationCategory">Category</label>
+        <label htmlFor="validationCategory">ชื่อประเภท</label>
         <input
           className="form-control is-invalid"
           id="validationCategory"
-          placeholder="Required example Category"
+          placeholder="เช่น ค่ารักษา หรือค่ายาสมุนไพร"
           required
           type="text"
           onChange={handleChange}
@@ -49,7 +50,7 @@ export default function AddCategory() {
           className="btn btn-outline-success"
           onClick={onSubmit}
         >
-          Create
+          เพิ่ม
         </button>
       </div>
     </form>
@@ -96,7 +97,7 @@ export default function AddCategory() {
       <div className="container pt-5 px-5">
         {successMessage()}
         {errorMessage()}
-        <p class="text-left font-weight-bold h3 mb-3">Add category</p>
+        <p class="text-left font-weight-bold h3 mb-3">เพิ่มประเภทใหม่</p>
         {renderForm()}
       </div>
     </Base>
