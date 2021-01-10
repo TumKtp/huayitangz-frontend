@@ -10,6 +10,7 @@ import { getCategories } from "../admin/controllers/categoryapi";
 export default function Home() {
   const { user, token } = isAutheticated();
   const [error, setError] = useState(false);
+  const [placeOrderError, setPlaceOrderError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
@@ -120,7 +121,7 @@ export default function Home() {
       console.log(data);
       setSuccess("ส่งคำสั่งซื้อเรียบร้อย");
     } catch (e) {
-      setError(e);
+      setError("ไม่สามารถส่งคำสั่งซื้อได้");
     }
   };
 
@@ -257,6 +258,7 @@ export default function Home() {
               type="button"
               className="btn btn-success"
               onClick={placeOrder}
+              data-dismiss="modal"
             >
               ยืนยัน
             </button>
@@ -408,7 +410,7 @@ export default function Home() {
         className="alert alert-danger alert-dismissible fade show"
         role="alert"
       >
-        <strong>Error!</strong> {error}
+        <strong>เกิดข้อผิดพลาด!</strong> {error}
         <button
           type="button"
           className="close"
@@ -426,7 +428,7 @@ export default function Home() {
         className="alert alert-success alert-dismissible fade show"
         role="alert"
       >
-        <strong>Done!</strong> {success}
+        <strong>สำเร็จ!</strong> {success}
         <button
           type="button"
           className="close"

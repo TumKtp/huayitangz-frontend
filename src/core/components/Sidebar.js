@@ -1,6 +1,6 @@
 import { React, Fragment } from "react";
 import { Link } from "react-router-dom";
-import { isAdmin } from "../../controllers/authapi";
+import { isAdmin, isDoctor } from "../../controllers/authapi";
 export default function Sidebar() {
   return (
     <div className="bg-light border-right" id="sidebar-wrapper">
@@ -16,14 +16,16 @@ export default function Sidebar() {
         </Link>
       </div>
       <div className="list-group list-group-flush">
+        {isDoctor() && (
+          <Link
+            to="/admin/orders"
+            className="list-group-item list-group-item-action bg-light"
+          >
+            Manage Orders
+          </Link>
+        )}
         {isAdmin() && (
           <Fragment>
-            <Link
-              to="/admin/orders"
-              className="list-group-item list-group-item-action bg-light"
-            >
-              Manage Orders
-            </Link>
             <Link
               to="/admin/products"
               className="list-group-item list-group-item-action bg-light"

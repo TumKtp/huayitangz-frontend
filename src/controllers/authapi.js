@@ -61,11 +61,15 @@ export const isAutheticated = () => {
 export const isAdmin = () => {
   if (localStorage.getItem("jwt")) {
     const result = JSON.parse(localStorage.getItem("jwt"));
-    if (result.user.role === 1) {
-      return true;
-    }
-    return false;
-  } else {
-    return false;
+    if (result.user.role === 2) return true;
   }
+  return false;
+};
+
+export const isDoctor = () => {
+  if (localStorage.getItem("jwt")) {
+    const result = JSON.parse(localStorage.getItem("jwt"));
+    if (result.user.role >= 1) return true;
+  }
+  return false;
 };

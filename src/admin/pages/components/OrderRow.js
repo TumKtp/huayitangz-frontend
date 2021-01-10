@@ -1,5 +1,9 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { isAutheticated } from "../../../controllers/authapi";
+import {
+  isAdmin,
+  isAutheticated,
+  isDoctor,
+} from "../../../controllers/authapi";
 import { deleteOrder, updateOrderStatus } from "../../controllers/orderapi";
 
 export default function OrderRow({ order, index, fetchFunction, allStatus }) {
@@ -116,12 +120,14 @@ export default function OrderRow({ order, index, fetchFunction, allStatus }) {
                 <i class="fa fa-pencil fa-xs" aria-hidden="true" />
               </a>
             )}
-            <a
-              className="btn btn-danger"
-              onClick={() => handleDelete(order._id)}
-            >
-              <i class="fa fa-trash fa-xs" aria-hidden="true" />
-            </a>
+            {isAdmin() && (
+              <a
+                className="btn btn-danger"
+                onClick={() => handleDelete(order._id)}
+              >
+                <i class="fa fa-trash fa-xs" aria-hidden="true" />
+              </a>
+            )}
           </div>
         </td>
       </tr>

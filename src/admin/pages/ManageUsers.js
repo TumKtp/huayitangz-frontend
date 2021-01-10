@@ -28,7 +28,6 @@ export default function ManageUsers() {
       <thead>
         <tr>
           <th scope="col">#</th>
-
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Role</th>
@@ -66,7 +65,7 @@ export default function ManageUsers() {
         className="alert alert-danger alert-dismissible fade show"
         role="alert"
       >
-        <strong>Error!</strong> {error}
+        <strong>เกิดข้อผิดพลาด!</strong> {error}
         <button
           type="button"
           className="close"

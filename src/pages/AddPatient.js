@@ -100,7 +100,7 @@ export default function AddPatient() {
         className="alert alert-danger alert-dismissible fade show"
         role="alert"
       >
-        <strong>Error!</strong> {error}
+        <strong>เกิดข้อผิดพลาด!</strong> {error}
         <button
           type="button"
           className="close"
@@ -118,7 +118,7 @@ export default function AddPatient() {
         className="alert alert-success alert-dismissible fade show"
         role="alert"
       >
-        <strong>Done!</strong> {success}
+        <strong>สำเร็จ!</strong> {success}
         <button
           type="button"
           className="close"

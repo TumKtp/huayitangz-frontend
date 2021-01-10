@@ -7,7 +7,7 @@ export default function Signup() {
   const { user, token } = isAutheticated();
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = async (formData) => {
     setError(false);
@@ -25,7 +25,7 @@ export default function Signup() {
       // setValue("category", "");
       // setValue("stock", "");
       // setValue("price", "");
-      // setSuccess("Product created");
+      setSuccess("User created");
     } catch (e) {
       setError(e);
       console.log(e);
@@ -83,6 +83,20 @@ export default function Signup() {
           ref={register}
         />
       </div>
+      <div className="mb-3">
+        <label htmlFor="roleTag">Category</label>
+        <select
+          className="custom-select"
+          id="roleTag"
+          required
+          name="role"
+          ref={register}
+        >
+          <option value="0">Normal user</option>
+          <option value="1">Doctor</option>
+          <option value="2">Admin</option>
+        </select>
+      </div>
       <div className="d-flex flex-row-reverse">
         <button
           type="button"
@@ -101,7 +115,7 @@ export default function Signup() {
         className="alert alert-danger alert-dismissible fade show"
         role="alert"
       >
-        <strong>Error!</strong> {error}
+        <strong>เกิดข้อผิดพลาด!</strong> {error}
         <button
           type="button"
           className="close"
@@ -119,7 +133,7 @@ export default function Signup() {
         className="alert alert-success alert-dismissible fade show"
         role="alert"
       >
-        <strong>Done!</strong> {success}
+        <strong>สำเร็จ!</strong> {success}
         <button
           type="button"
           className="close"
