@@ -172,8 +172,8 @@ const Signin = () => {
                     src={process.env.PUBLIC_URL + "/logo.png"}
                     className="mb-3"
                     style={{
-                      width: "300px",
-                      height: "300px",
+                      width: "250px",
+                      height: "250px",
                     }}
                   />
                 </div>

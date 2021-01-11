@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function Card({ product, addToCart }) {
+export default function Card({ product, addToCart, initCount }) {
   const [count, setCount] = useState(0);
-
+  useEffect(() => {
+    if (initCount) setCount(initCount.count);
+  }, []);
   const handleChange = (event) => {
     // setCount(event.target.value);
     // console.log(event.target.value);
@@ -90,9 +92,17 @@ export default function Card({ product, addToCart }) {
         value={count}
         min="0"
       />
-      <div className="input-group-append" onClick={handleAddition}>
-        <button className="btn btn-success">+</button>
-      </div>
+      {count >= product.stock ? (
+        <div className="input-group-append" onClick={handleAddition}>
+          <button className="btn btn-success" disabled>
+            +
+          </button>
+        </div>
+      ) : (
+        <div className="input-group-append" onClick={handleAddition}>
+          <button className="btn btn-success">+</button>
+        </div>
+      )}
     </div>
   );
 

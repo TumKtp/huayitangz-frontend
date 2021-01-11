@@ -15,12 +15,12 @@ export default function Home() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [patients, setPatients] = useState([]);
-  const [patientId, setPatientId] = useState();
+  const [patientId, setPatientId] = useState("");
   const [categories, setCategories] = useState([]);
   const [herbPackage, setHerbPackage] = useState(0);
   const [radioValue, setRadioValue] = useState();
   const [textFilter, setTextFilter] = useState();
-
+  console.log(cart);
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
@@ -110,13 +110,14 @@ export default function Home() {
   const placeOrder = async () => {
     setError(false);
     setSuccess(false);
+    console.log(patientId);
     const order = {
       cart,
       patient: patientId,
       herbPackage,
     };
     console.log(patientId);
-    if (patientId === undefined)
+    if (patientId.length === 0)
       return setError("โปรดเลือกชื่อคนไข้ในคำสั่งซื้อ");
     try {
       const data = await createOrder(user, token, order);
@@ -124,7 +125,8 @@ export default function Home() {
       console.log(data);
       setSuccess("ส่งคำสั่งซื้อเรียบร้อย");
     } catch (e) {
-      setError("ไม่สามารถส่งคำสั่งซื้อได้");
+      console.log(e);
+      setError(e.errorTH ? e.errorTH : "ไม่สามารถส่งคำสั่งซื้อได้");
     }
   };
 
@@ -261,7 +263,8 @@ export default function Home() {
               type="button"
               className="btn btn-success"
               onClick={placeOrder}
-              data-dismiss="modal"
+              //TODO: delete comment
+              // data-dismiss="modal"
             >
               ยืนยัน
             </button>
@@ -332,9 +335,16 @@ export default function Home() {
       <div className="row">
         {filteredProducts.map((product, index) => {
           return (
-            <div key={index} className="col-sm-12 col-md-4 col-lg-3  mb-4 ">
+            <div
+              key={product._id}
+              className="col-sm-12 col-md-4 col-lg-3  mb-4 "
+            >
               <div className="cnt-block equal-hight">
-                <Card product={product} addToCart={addToCart} />
+                <Card
+                  product={product}
+                  addToCart={addToCart}
+                  initCount={cart.find((item) => item.product === product._id)}
+                />
               </div>
             </div>
           );

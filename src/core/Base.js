@@ -13,7 +13,7 @@ export default function Base({ children }) {
   };
   return (
     <Fragment>
-      <div className={"d-flex " + (sidebar && "toggled")} id="wrapper">
+      <div className={"d-flex " + (sidebar ? "toggled" : "")} id="wrapper">
         <Sidebar />
         <div id="page-content-wrapper">
           <Header toggleSidebar={toggleSidebar} />
