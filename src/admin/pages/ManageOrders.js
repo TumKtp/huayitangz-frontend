@@ -147,9 +147,7 @@ export default function ManageOrders() {
     <Base>
       <div className="container pt-5 px-5 ">
         {errorMessage()}
-        <div className="text-center display-4 mb-3 col-12">
-          คำสั่งซื้อทั้งหมด
-        </div>
+        <div className="text-center display-4 mb-3 ">คำสั่งซื้อทั้งหมด</div>
         {renderFilter()}
         {renderTable()}
       </div>

@@ -97,7 +97,7 @@ export default function AddCategory() {
       <div className="container pt-5 px-5">
         {successMessage()}
         {errorMessage()}
-        <p class="text-left font-weight-bold h3 mb-3">เพิ่มประเภทใหม่</p>
+        <div className="text-center display-4 mb-3">เพิ่มประเภทใหม่</div>
         {renderForm()}
       </div>
     </Base>

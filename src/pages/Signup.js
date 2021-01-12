@@ -150,7 +150,7 @@ export default function Signup() {
       <div className="container pt-5 px-5">
         {successMessage()}
         {errorMessage()}
-        <p class="text-left font-weight-bold h3 mb-3">เพิ่มผู้ใช้งาน</p>
+        <div className="text-center display-4 mb-3  ">เพิ่มผู้ใช้งาน</div>
         {renderForm()}
       </div>
     </Base>

@@ -460,11 +460,11 @@ export default function Home() {
   return (
     <Base>
       {/* <h2>All products</h2> */}
-      <div className="row pt-3 ">
+      <div className="row pt-3">
         <div className="col-lg-10 col-md-12">
           {successMessage()}
           {errorMessage()}
-          <div className="text-center display-4 mb-3 col-12">สินค้าทั้งหมด</div>
+          <div className="text-center display-4 my-3">สินค้าทั้งหมด</div>
           {renderFilter()}
           {renderAllProducts()}
         </div>

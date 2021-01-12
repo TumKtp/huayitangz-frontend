@@ -86,9 +86,7 @@ export default function ManageUsers() {
     <Base>
       <div className="container pt-5 px-5 ">
         {errorMessage()}
-        <div className="text-center display-4 mb-3 col-12">
-          ผู้ใช้งานทั้งหมด
-        </div>
+        <div className="text-center display-4 mb-3 ">ผู้ใช้งานทั้งหมด</div>
         {renderTable()}
       </div>
     </Base>

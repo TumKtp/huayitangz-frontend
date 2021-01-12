@@ -183,7 +183,7 @@ export default function AddProduct() {
       <div className="container pt-5 px-5">
         {errorMessage()}
         {successMessage()}
-        <p className="text-left font-weight-bold h3 mb-3">เพิ่มสินค้าใหม่</p>
+        <div className="text-center display-4 mb-3">เพิ่มสินค้าใหม่</div>
         {renderForm()}
       </div>
     </Base>

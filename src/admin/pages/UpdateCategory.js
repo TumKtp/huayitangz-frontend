@@ -113,7 +113,7 @@ export default function UpdateCategory({ match }) {
       <div className="container pt-5 px-5">
         {errorMessage()}
         {successMessage()}
-        <div className="text-center display-4 mb-3 col-12">แก้ไขชื่อประเภท</div>
+        <div className="text-center display-4 mb-3 ">แก้ไขชื่อประเภท</div>
         {renderForm()}
       </div>
     </Base>
