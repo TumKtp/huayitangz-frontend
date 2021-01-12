@@ -4,6 +4,7 @@ import { isAutheticated } from "../../controllers/authapi";
 import { getAllProducts } from "../../controllers/productapi";
 import Base from "../../core/Base";
 import { deleteProduct } from "../controllers/productapi";
+import ConfirmDialog from "./components/ConfirmDialog";
 
 export default function MagageProducts() {
   const { user, token } = isAutheticated();
@@ -61,10 +62,17 @@ export default function MagageProducts() {
                   <button
                     type="button"
                     className="btn btn-danger"
-                    onClick={() => handleDelete(product._id)}
+                    data-toggle="modal"
+                    data-target={"#modalProduct" + product._id}
                   >
                     <i class="fa fa-trash" aria-hidden="true" />
                   </button>
+                  <ConfirmDialog
+                    id={"modalProduct" + product._id}
+                    title="ยืนยันการลบสินค้า"
+                    desc={`ชื่อสินค้า: ${product.name}\nประเภทสินค้า: ${product.category.name}\nราคาสินค้า: ${product.price}\nสต๊อก: ${product.stock}`}
+                    confirmOnclick={() => handleDelete(product._id)}
+                  />
                 </div>
               </td>
             </tr>

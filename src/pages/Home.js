@@ -10,29 +10,19 @@ import { getCategories } from "../admin/controllers/categoryapi";
 export default function Home() {
   const { user, token } = isAutheticated();
   const [error, setError] = useState(false);
-  const [placeOrderError, setPlaceOrderError] = useState(false);
+  const [fetch, setFetch] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [patients, setPatients] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
-  const [patients, setPatients] = useState([]);
   const [patientId, setPatientId] = useState("");
-  const [categories, setCategories] = useState([]);
   const [herbPackage, setHerbPackage] = useState(0);
   const [radioValue, setRadioValue] = useState();
   const [textFilter, setTextFilter] = useState();
+
   console.log(cart);
   useEffect(() => {
-    const fetchAllProducts = async () => {
-      try {
-        const data = await getAllProducts(user, token);
-        if (data.error) throw data.error;
-        setProducts(data);
-        // console.log(data);
-      } catch (e) {
-        console.log(e);
-        setError("โหลดข้อมูลสินค้าไม่สำเร็จ");
-      }
-    };
     const fetchAllPatients = async () => {
       try {
         const data = await getAllPatients(user, token);
@@ -54,13 +44,27 @@ export default function Home() {
         console.log(e);
       }
     };
-    fetchAllProducts();
+
     fetchAllPatients();
     fetchCategories();
   }, []);
 
-  // All Functions
+  useEffect(() => {
+    const fetchAllProducts = async () => {
+      try {
+        const data = await getAllProducts(user, token);
+        if (data.error) throw data.error;
+        setProducts(data);
+        // console.log(data);
+      } catch (e) {
+        console.log(e);
+        setError("โหลดข้อมูลสินค้าไม่สำเร็จ");
+      }
+    };
+    fetchAllProducts();
+  }, [fetch]);
 
+  // All Functions
   const selectPatient = (event) => {
     setError(false);
     setPatientId(event.target.value);
@@ -110,19 +114,18 @@ export default function Home() {
   const placeOrder = async () => {
     setError(false);
     setSuccess(false);
-    console.log(patientId);
     const order = {
       cart,
       patient: patientId,
       herbPackage,
     };
-    console.log(patientId);
-    if (patientId.length === 0)
-      return setError("โปรดเลือกชื่อคนไข้ในคำสั่งซื้อ");
     try {
+      if (patientId.length === 0)
+        return setError("โปรดเลือกชื่อคนไข้ในคำสั่งซื้อ");
       const data = await createOrder(user, token, order);
       if (data.error) throw data.error;
       console.log(data);
+      setFetch(!fetch);
       setSuccess("ส่งคำสั่งซื้อเรียบร้อย");
     } catch (e) {
       console.log(e);
@@ -263,7 +266,6 @@ export default function Home() {
               type="button"
               className="btn btn-success"
               onClick={placeOrder}
-              //TODO: delete comment
               // data-dismiss="modal"
             >
               ยืนยัน
@@ -333,7 +335,7 @@ export default function Home() {
     );
     return (
       <div className="row">
-        {filteredProducts.map((product, index) => {
+        {filteredProducts.map((product, _) => {
           return (
             <div
               key={product._id}
@@ -343,7 +345,9 @@ export default function Home() {
                 <Card
                   product={product}
                   addToCart={addToCart}
-                  initCount={cart.find((item) => item.product === product._id)}
+                  initCount={
+                    cart && cart.find((item) => item.product === product._id)
+                  }
                 />
               </div>
             </div>

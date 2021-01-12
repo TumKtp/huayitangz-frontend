@@ -29,10 +29,8 @@ export default function AddProduct() {
     setError(false);
     setSuccess(false);
     try {
-      console.log(formData);
       const data = await createProduct(user, token, formData);
       if (data.error) throw data.error;
-      console.log(data);
       // setValue("name", "");
       // setValue("description", "");
       // setValue("imageUrl", "");

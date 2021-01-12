@@ -5,6 +5,7 @@ import {
   isDoctor,
 } from "../../../controllers/authapi";
 import { deleteOrder, updateOrderStatus } from "../../controllers/orderapi";
+import ConfirmDialog from "./ConfirmDialog";
 
 export default function OrderRow({ order, index, fetchFunction, allStatus }) {
   const { user, token } = isAutheticated();
@@ -13,6 +14,7 @@ export default function OrderRow({ order, index, fetchFunction, allStatus }) {
 
   const handleDelete = async (orderId) => {
     console.log(await deleteOrder(user, token, orderId));
+    console.log("DELETE");
     fetchFunction();
   };
 
@@ -101,33 +103,44 @@ export default function OrderRow({ order, index, fetchFunction, allStatus }) {
         <td>{order.amount}</td>
         <td>
           <div className="d-flex justify-content-around">
-            <a
+            <button
               className="btn btn-light"
               data-toggle="collapse"
               href={`#multiCollapse${index}`}
               role="button"
             >
               <i class="fa fa-sort-desc fa-xs" aria-hidden="true" />
-            </a>
+            </button>
             {edit ? (
-              <a
+              <button
                 className="btn btn-warning"
                 onClick={() => handleSave(order._id)}
               >
                 <i class="fa fa-floppy-o" aria-hidden="true" />
-              </a>
+              </button>
             ) : (
-              <a className="btn btn-secondary" onClick={handleEdit}>
+              <button className="btn btn-secondary" onClick={handleEdit}>
                 <i class="fa fa-pencil fa-xs" aria-hidden="true" />
-              </a>
+              </button>
             )}
             {isAdmin() && (
-              <a
-                className="btn btn-danger"
-                onClick={() => handleDelete(order._id)}
-              >
-                <i class="fa fa-trash fa-xs" aria-hidden="true" />
-              </a>
+              <Fragment>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  data-toggle="modal"
+                  data-target={"#modalOrder" + order._id}
+                >
+                  <i class="fa fa-trash fa-xs" aria-hidden="true" />
+                </button>
+
+                <ConfirmDialog
+                  id={"modalOrder" + order._id}
+                  title="ยืนยันการลบคำสั่งซื้อ"
+                  desc={`ชื่อคนไข้: ${order.patient.firstName} ${order.patient.lastName}\nผู้สั่ง: ${order.user.name}\nราคา: ${order.amount}\nสถานะ: ${order.status}`}
+                  confirmOnclick={() => handleDelete(order._id)}
+                />
+              </Fragment>
             )}
           </div>
         </td>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { isAutheticated } from "../../controllers/authapi";
 import { deleteCategory, getCategories } from "../controllers/categoryapi";
+import ConfirmDialog from "./components/ConfirmDialog";
 import Base from "../../core/Base";
 
 export default function ManageCategories() {
@@ -34,9 +35,7 @@ export default function ManageCategories() {
       <thead>
         <tr>
           <th scope="col">#</th>
-
           <th scope="col">ชื่อประเภท</th>
-
           <th scope="col">วันที่เพิ่ม</th>
           <th scope="col">อื่นๆ</th>
         </tr>
@@ -59,10 +58,20 @@ export default function ManageCategories() {
                   <button
                     type="button"
                     className="btn btn-danger"
-                    onClick={() => handleDelete(category._id)}
+                    data-toggle="modal"
+                    data-target={"#modalCategory" + category._id}
                   >
                     <i class="fa fa-trash" aria-hidden="true" />
                   </button>
+
+                  <ConfirmDialog
+                    id={"modalCategory" + category._id}
+                    title="ยืนยันการลบสินค้า"
+                    desc={`ชื่อสินค้า: ${
+                      category.name
+                    }\nวันที่เพิ่ม: ${category.createdAt.slice(0, 10)}`}
+                    confirmOnclick={() => handleDelete(category._id)}
+                  />
                 </div>
               </td>
             </tr>
