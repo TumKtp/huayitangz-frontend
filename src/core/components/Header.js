@@ -5,13 +5,6 @@ import { isAdmin, signout } from "../../controllers/authapi";
 
 export default function Header({ toggleSidebar }) {
   const realPath = useLocation().pathname;
-  const currentTab = (path) => {
-    if (realPath === path) {
-      return { color: "#174274" };
-    } else {
-      return { color: "#000000" };
-    }
-  };
   return (
     <nav className="navbar navbar-light bg-light navbar-expand-lg border-bottom ">
       <a class="navbar-brand" href="/home">

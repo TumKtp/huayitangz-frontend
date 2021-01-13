@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { isAutheticated, signup } from "../controllers/authapi";
+import { isAutheticated } from "../controllers/authapi";
 import Base from "../core/Base";
 import { useForm } from "react-hook-form";
 import { createPatient } from "../controllers/patientapi";
@@ -8,7 +8,7 @@ export default function AddPatient() {
   const { user, token } = isAutheticated();
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = async (formData) => {
     setError(false);

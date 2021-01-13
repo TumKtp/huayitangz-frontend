@@ -1,9 +1,5 @@
-import React, { Fragment, useEffect, useState } from "react";
-import {
-  isAdmin,
-  isAutheticated,
-  isDoctor,
-} from "../../../controllers/authapi";
+import React, { Fragment, useState } from "react";
+import { isAdmin, isAutheticated } from "../../../controllers/authapi";
 import { deleteOrder, updateOrderStatus } from "../../controllers/orderapi";
 import ConfirmDialog from "./ConfirmDialog";
 
@@ -84,7 +80,7 @@ export default function OrderRow({ order, index, fetchFunction, allStatus }) {
               <select className="custom-select" onChange={handleStatus}>
                 {allStatus &&
                   allStatus.map((value, index) =>
-                    value == order.status ? (
+                    value === order.status ? (
                       <option key={index} value={value} selected>
                         {value}
                       </option>
@@ -107,7 +103,6 @@ export default function OrderRow({ order, index, fetchFunction, allStatus }) {
               className="btn btn-light"
               data-toggle="collapse"
               href={`#multiCollapse${index}`}
-              role="button"
             >
               <i class="fa fa-sort-desc fa-xs" aria-hidden="true" />
             </button>

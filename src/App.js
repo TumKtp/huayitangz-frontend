@@ -22,6 +22,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/" exact component={Signin} />
+        <Route path="/signup" exact component={Signup} />
 
         <PrivateRoute path="/home" exact component={Home} />
         <PrivateRoute path="/create/patient" exact component={AddPatient} />
@@ -51,7 +52,6 @@ function App() {
           component={ManageCategories}
         />
         <AdminRoute path="/admin/users" exact component={ManageUsers} />
-        <AdminRoute path="/signup" exact component={Signup} />
         <Route path="" component={Signin} />
         {/* <Route path="/cart" exact component={Cart} /> */}
         {/* <PrivateRoute path="/user/dashboard" exact component={UserDashBoard} />

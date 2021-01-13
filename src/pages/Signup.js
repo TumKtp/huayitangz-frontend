@@ -13,9 +13,8 @@ export default function Signup() {
     setError(false);
     setSuccess(false);
     try {
-      if (formData.password != formData.confirmPassword)
+      if (formData.password !== formData.confirmPassword)
         throw "Password doesn't match";
-
       const data = await signup(formData);
       if (data.error) throw data.error;
       console.log(data);

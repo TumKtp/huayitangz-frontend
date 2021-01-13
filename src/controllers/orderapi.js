@@ -1,8 +1,6 @@
-import { API } from "../backend";
-
 export const createOrder = async (user, token, order) => {
   return (
-    await fetch(`${API}/order/create/${user._id}`, {
+    await fetch(`/api/order/create/${user._id}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -16,7 +14,7 @@ export const createOrder = async (user, token, order) => {
 
 export const getOrdersForUser = async (user, token) => {
   return (
-    await fetch(`${API}/orders/${user._id}`, {
+    await fetch(`/api/orders/${user._id}`, {
       method: "GET",
       headers: {
         Accept: "application/json",

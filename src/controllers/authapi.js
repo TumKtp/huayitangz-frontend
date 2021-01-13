@@ -1,8 +1,6 @@
-import { API } from "../backend";
-
 export const signup = async (user) => {
   return (
-    await fetch(`${API}/signup`, {
+    await fetch(`/api/signup`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -15,7 +13,7 @@ export const signup = async (user) => {
 
 export const signin = async (user) => {
   return (
-    await fetch(`${API}/signin`, {
+    await fetch(`/api/signin`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -36,7 +34,7 @@ export const signout = async () => {
   if (typeof window !== "undefined") {
     localStorage.removeItem("jwt");
     try {
-      await fetch(`${API}/signout`, {
+      await fetch(`/api/signout`, {
         method: "GET",
       });
       console.log("signout success");

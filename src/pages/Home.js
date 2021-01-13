@@ -106,7 +106,7 @@ export default function Home() {
       setCart([...newCart]);
     } else {
       // Only non-zero count can be added
-      if (count != 0)
+      if (count !== 0)
         setCart([...newCart, { count, product, price, name, categoryName }]);
     }
   };
@@ -222,7 +222,7 @@ export default function Home() {
                     .reduce(function (a, b) {
                       return (
                         a +
-                        (b.categoryName == "ยาสมุนไพร"
+                        (b.categoryName === "ยาสมุนไพร"
                           ? b.count * b.price * herbPackage
                           : b.count * b.price)
                       );
@@ -282,14 +282,14 @@ export default function Home() {
       <div className="card-header h5">ตะกร้าสินค้า</div>
       {/* cart Card Body */}
       <div className="card-body text-secondary">
-        {cart.length != 0 ? (
+        {cart.length !== 0 ? (
           renderItemsInCart()
         ) : (
           <div>ยังไม่มีสินค้าในตะกร้า</div>
         )}
       </div>
       {/* cart Card Footer */}
-      {cart.length != 0 && (
+      {cart.length !== 0 && (
         <div class="card-footer bg-transparent border-secondary">
           <div className="row justify-content-between card-subtitle">
             {renderInputspinner()}
@@ -301,7 +301,7 @@ export default function Home() {
                 .reduce(function (a, b) {
                   return (
                     a +
-                    (b.categoryName == "ยาสมุนไพร"
+                    (b.categoryName === "ยาสมุนไพร"
                       ? b.count * b.price * herbPackage
                       : b.count * b.price)
                   );
@@ -330,7 +330,7 @@ export default function Home() {
     // but if it's not empty, filter it.
     const filteredProducts = products.filter(
       (product) =>
-        (!radioValue || product.category.name == radioValue) &&
+        (!radioValue || product.category.name === radioValue) &&
         (!textFilter || product.name.includes(textFilter))
     );
     return (
@@ -362,7 +362,7 @@ export default function Home() {
     sortCart();
     return (
       <Fragment>
-        {cart.map((item, index) => {
+        {cart.map((item, _) => {
           if (lastCategory !== item.categoryName) {
             lastCategory = item.categoryName;
             return (

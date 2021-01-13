@@ -116,6 +116,7 @@ const Signin = () => {
                         objectFit: "cover",
                         minHeight: "80vh",
                       }}
+                      alt="FirstImg"
                     />
                   </div>
                   <div className="carousel-item">
@@ -126,6 +127,7 @@ const Signin = () => {
                         objectFit: "cover",
                         minHeight: "80vh",
                       }}
+                      alt="SecondImg"
                     />
                   </div>
                   <div className="carousel-item">
@@ -136,6 +138,7 @@ const Signin = () => {
                         objectFit: "cover",
                         minHeight: "80vh",
                       }}
+                      alt="ThirdImg"
                     />
                   </div>
                 </div>
@@ -175,6 +178,7 @@ const Signin = () => {
                       width: "250px",
                       height: "250px",
                     }}
+                    alt="Logo"
                   />
                 </div>
 

@@ -1,9 +1,7 @@
-import { API } from "../../backend";
-
 // get all categories
 export const getCategories = async () => {
   return (
-    await fetch(`${API}/categories`, {
+    await fetch(`/api/categories`, {
       method: "GET",
     })
   ).json();
@@ -11,7 +9,7 @@ export const getCategories = async () => {
 
 export const getCategory = async (categoryId) => {
   return (
-    await fetch(`${API}/category/${categoryId}`, {
+    await fetch(`/api/category/${categoryId}`, {
       method: "GET",
     })
   ).json();
@@ -20,7 +18,7 @@ export const getCategory = async (categoryId) => {
 // create category
 export const createCategory = async (userId, token, category) => {
   return (
-    await fetch(`${API}/category/create/${userId}`, {
+    await fetch(`/api/category/create/${userId}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -35,7 +33,7 @@ export const createCategory = async (userId, token, category) => {
 // delete category
 export const deleteCategory = async (userId, token, categoryId) => {
   return (
-    await fetch(`${API}/category/${categoryId}/${userId}`, {
+    await fetch(`/api/category/${categoryId}/${userId}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -49,7 +47,7 @@ export const deleteCategory = async (userId, token, categoryId) => {
 //uodate category
 export const updateCategory = async (userId, token, categoryId, name) => {
   return (
-    await fetch(`${API}/category/${categoryId}/${userId}`, {
+    await fetch(`/api/category/${categoryId}/${userId}`, {
       method: "PUT",
       headers: {
         Accept: "application/json",

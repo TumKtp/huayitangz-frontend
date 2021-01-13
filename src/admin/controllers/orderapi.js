@@ -1,8 +1,6 @@
-import { API } from "../../backend";
-
 export const getAllOrders = async (user, token) => {
   return (
-    await fetch(`${API}/admin/orders/${user._id}`, {
+    await fetch(`/api/admin/orders/${user._id}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -15,7 +13,7 @@ export const getAllOrders = async (user, token) => {
 
 export const getOrderStatus = async (user, token) => {
   return (
-    await fetch(`${API}/orders/status/${user._id}`, {
+    await fetch(`/api/orders/status/${user._id}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -28,7 +26,7 @@ export const getOrderStatus = async (user, token) => {
 
 export const updateOrderStatus = async (user, token, orderId, status) => {
   return (
-    await fetch(`${API}/orders/${orderId}/status/${user._id}`, {
+    await fetch(`/api/orders/${orderId}/status/${user._id}`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -42,7 +40,7 @@ export const updateOrderStatus = async (user, token, orderId, status) => {
 
 export const deleteOrder = async (user, token, orderId) => {
   return (
-    await fetch(`${API}/orders/${orderId}/${user._id}`, {
+    await fetch(`/api/orders/${orderId}/${user._id}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

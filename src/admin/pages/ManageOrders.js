@@ -85,7 +85,7 @@ export default function ManageOrders() {
     console.log(orders[0]);
     const filteredOrders = orders.filter(
       (order) =>
-        (!radioValue || order.status == radioValue) &&
+        (!radioValue || order.status === radioValue) &&
         (!textFilter ||
           order.user.name.includes(textFilter) ||
           order.patient.firstName.includes(textFilter) ||

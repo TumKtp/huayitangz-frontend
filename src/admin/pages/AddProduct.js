@@ -6,7 +6,7 @@ import { getCategories } from "../controllers/categoryapi";
 import { createProduct } from "../controllers/productapi";
 export default function AddProduct() {
   const { user, token } = isAutheticated();
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit } = useForm();
   const [categories, setCategories] = useState([]);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
